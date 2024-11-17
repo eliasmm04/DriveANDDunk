@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/* como esta explicado en el html es un div que sirve para centrar el texto por culpa de la contruccion del html y css */
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+        
+}
+/* da estilos al h1 */
+.titulo {
+    font-weight: bold;
+    font-size: 20pt;
+    margin-bottom: 1%;
+}
+
+/* estilos del texto que esta debajo del h1 */
+.texto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;              
+    width: 90%;
+}
+
+.imagenespaginaprincipalarribaa {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
+}
+
+.imagenespaginaprincipalarribaa .NBA {
+    margin-top: 2.3%;
+    width: 250px;
+    height: 175px;
+
+}
+.imagenespaginaprincipalarribaa img{
+    
+    width: 250px;
+    height: 250px;
+
+}
+
+
+ 
+/* centrar noticias */
+.centrar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.noticia {
+    width: 25%;
+    text-align: center;
+    align-items: center;
+}
+
+.noticia button {
+    bottom: 0;
+}
+
+.noticia img {
+    width: 200px;
+    margin-bottom: 33px;
+}
+
+.footer {
+    margin-top: 200px;
+}

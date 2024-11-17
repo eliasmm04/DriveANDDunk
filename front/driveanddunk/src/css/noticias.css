@@ -1,0 +1,24 @@
+.centrar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.noticia {
+    width: 25%;
+    text-align: center;
+    align-items: center;
+}
+
+.noticia button {
+    bottom: 0;
+}
+.noticia img{
+    width: 200px;
+    margin-bottom: 33px;
+}
+.footer{
+    margin-top: 200px;
+}
