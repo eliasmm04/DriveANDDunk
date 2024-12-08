@@ -25,7 +25,7 @@ Este es el frontend de la aplicación, desarrollado con **React**, utilizando el
     ```
 4. Ejecuta la aplicación:
     ```bash
-    npm start
+    npm run start
     ```
 5. La aplicación estará disponible en:  
    [http://localhost:3000](http://localhost:3000).
