@@ -1,85 +1,111 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import Cabecera from "../cabecera/cabecera";
-import Inicio from "../Inicio/Inicio";
+import WithLoader from "../loader/WithLoader";
+import { MagicMotion } from "react-magic-motion";
 import "./f1.css";
 
 const F1 = () => {
+  const [pilotos, setPilotos] = useState([]);
+  const [escuderias, setEscuderias] = useState([]);
+  const [pilotosFiltrados, setPilotosFiltrados] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  // Obtener datos de pilotos
+  const obtenerPilotos = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/pilotos/");
+      setPilotos(response.data);
+      setPilotosFiltrados(response.data);
+      console.log(response.data);
+      setHasError(false);
+    } catch (error) {
+      console.error("Error al cargar los pilotos:", error);
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Obtener datos de equipos
+  const obtenerEscuderias = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/escuderias/");
+      setEscuderias(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error al cargar los equipos:", error);
+    }
+  };
+
+  // Filtrar pilotos según la búsqueda
+  const filtrarPilotos = (terminoBusqueda) => {
+    const resultados = pilotos.filter((piloto) =>
+      piloto.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())
+    );
+    setPilotosFiltrados(resultados);
+  };
+
+  // Manejar cambios en el input de búsqueda
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filtrarPilotos(e.target.value);
+  };
+
+  useEffect(() => {
+    obtenerPilotos();
+    obtenerEscuderias();
+  }, []);
+
+  if (hasError) {
+    return (
+      <div>
+        <Cabecera activePage="f1" />
+        <p>Hubo un problema al cargar los datos. Por favor, intenta más tarde.</p>
+      </div>
+    );
+  }
+
   return (
-    <>
-    <Cabecera activePage="inicio" />
-      <div className="cuerpo">
-        <div className="margen">
-          <h1>Mercedes-AMG Petronas Formula One Team</h1>
-          <p>El equipo Mercedes-AMG Petronas Formula One Team, conocido simplemente como Mercedes, es una escudería de Fórmula Uno con una rica historia en el deporte. Fundada en 2010 como una toma de control de Brawn GP, el equipo ha dominado la era híbrida de la F1, ganando múltiples campeonatos de pilotos y constructores.</p>
-          <p>Los pilotos actuales de Mercedes son Lewis Hamilton y George Russell. Lewis Hamilton es uno de los pilotos más exitosos en la historia de la Fórmula Uno, con múltiples campeonatos mundiales en su haber. George Russell, aunque más joven y menos experimentado, ha demostrado ser un talento prometedor en la parrilla.</p>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Foto</th>
-                <th>Nombre del Piloto</th>
-                <th>Número de Carreras en F1</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img src="../imagenes/Imagenes/1.jpg" alt="Lewis Hamilton" /></td>
-                <td>Lewis Hamilton</td>
-                <td>256</td>
-              </tr>
-              <tr>
-                <td><img src="../imagenes/Imagenes/2.jpg" alt="George Russell" /></td>
-                <td>George Russell</td>
-                <td>47</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h1>Red Bull Racing Honda</h1>
-          <p>Red Bull Racing Honda es una de las escuderías más competitivas en la parrilla de la Fórmula Uno. Fundada en 2005, el equipo ha logrado múltiples campeonatos de pilotos y constructores, desafiando el dominio de equipos tradicionales como Ferrari y Mercedes.</p>
-          <p>Los pilotos actuales de Red Bull Racing Honda son Max Verstappen y Sergio Pérez. Max Verstappen, conocido por su talento y agresividad en la pista, es uno de los pilotos más emocionantes de la actualidad. Sergio Pérez, con una sólida experiencia en la F1, complementa bien el equipo con su consistencia y habilidad para sumar puntos.</p>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Foto</th>
-                <th>Nombre del Piloto</th>
-                <th>Número de Carreras en F1</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img src="../imagenes/Imagenes/3.jpg" alt="Max Verstappen" /></td>
-                <td>Max Verstappen</td>
-                <td>129</td>
-              </tr>
-              <tr>
-                <td><img src="../imagenes/Imagenes/4.jpg" alt="Sergio Pérez" /></td>
-                <td>Sergio Pérez</td>
-                <td>205</td>
-              </tr>
-            </tbody>
-          </table>
-          
-          {/* You can repeat the same structure for other teams */}
-        </div>
+    <div>
+      <Cabecera activePage="f1" />
+      <div className="containerInput">
+        <input
+          className="inputBuscar"
+          value={busqueda}
+          placeholder="Buscar piloto por nombre"
+          onChange={handleChange}
+        />
       </div>
-      <div className="footer">
-        <div className="Info">
-          <a href="desarrollo.html">Sobre mí</a>
-          <a href="desarrollo.html">Cookies</a>
-        </div>
-        <div className="divredes">
-          <div className="redes">
-            <a href="#"><FontAwesomeIcon icon={['fab', 'twitter']} /></a>
-            <a href="#"><FontAwesomeIcon icon={['fab', 'youtube']} /></a>
+
+      <WithLoader isLoading={isLoading}>
+        {pilotosFiltrados.length === 0 && (
+          <div className="no-results">No hay resultados para esa búsqueda.</div>
+        )}
+        <MagicMotion>
+          <div className="pilotosDisplay">
+            {pilotosFiltrados.map((piloto) => (
+              <Link to={`/pilotos/${piloto.id}`} key={piloto.id}>
+                <div className="pilotoCard">
+                  <img src={piloto.imagen} alt={piloto.nombre} />
+                  <h2>{piloto.nombre}</h2>
+                  <p>
+                    <strong>Equipo:</strong> {piloto.escuderia.nombre || "Desconocido"}
+                  </p>
+                  <p>
+                    <strong>Carreras:</strong> {piloto.numero_carreras || "0"}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
-        </div>
-      </div>
-    </>
+        </MagicMotion>
+      </WithLoader>
+    </div>
   );
 };
 

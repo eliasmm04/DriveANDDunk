@@ -1,7 +1,9 @@
 import './cabecera.css';
 import logo from './Tus_Deportes.com__1_-removebg-preview.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket} from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -32,11 +34,15 @@ const Cabecera = ({ activePage }) => {
           <Link to="/" className='nav-url'>
             <img src={logo} alt="Logo" className='logo' />
           </Link>
+          
         </div>
         <div className="icon">
-          <Link to="/enDesarrollo" className='nav-url'>
-            <FontAwesomeIcon icon={faBars} className='icono' />
+          <div className='ordenarIconosCabecera'>
+          <Link to="/carrito" className='nav-url'>
+            <FontAwesomeIcon icon={faCartShopping} className='icono' />
           </Link>
+
+          </div>
         </div>
       </div>
 

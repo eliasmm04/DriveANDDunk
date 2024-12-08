@@ -1,0 +1,54 @@
+/* pilotoEspecifico.css */
+
+/* Contenedor principal */
+.piloto-detalles {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Estilo de la imagen del piloto */
+.piloto-imagen {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño máximo */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  filter: drop-shadow(
+    0 0 10px rgba(0,0,0,.8)
+  );
+}
+
+/* Título del piloto */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Estilo para los párrafos */
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Estilo para las etiquetas dentro de los párrafos */
+strong {
+  font-weight: bold;
+}
+
+/* Estilo para el botón de "Volver" */
+button {
+  background-color: #df1882;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #c9136b;
+}

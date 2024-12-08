@@ -1,74 +1,83 @@
-import React from 'react';
-import Cabecera from '../cabecera/cabecera.js';
-import './noticias.css';
-import noticia1 from "../imagenes/Imagenes/noti1.webp";
-import noticia2 from "../imagenes/Imagenes/noti2.webp";
-import noticia3 from "../imagenes/Imagenes/noti3.webp";
-import noticia4 from "../imagenes/Imagenes/noti4.webp";
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Cabecera from "../cabecera/cabecera.js";
+import "./noticias.css";
+import { MagicMotion } from "react-magic-motion";
 
 const Noticias = () => {
-    return (
-        <>
-            <Cabecera activePage="inicio" />
-            <div className="cuerpo">
-                {/* Menú de navegación */}
+  const [noticias, setNoticias] = useState([]);
+  const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [cargando, setCargando] = useState(true);
 
+  const obtenerNoticias = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/noticias/");
+      setNoticias(response.data);
+      setNoticiasFiltradas(response.data);
+      setCargando(false);
+    } catch (error) {
+      console.error("Error al cargar las noticias:", error);
+      setCargando(false);
+    }
+  };
 
-                {/* Sección de noticias */}
-                <div className="centrar">
-                    <div className="noticia">
-                        <a href="noti1.html">
-                            <img src={noticia1} alt="Noticia 1" />
-                        </a>
-                        <p>El mejor tirador de todos los tiempos venció el Concurso de Triples ante la tiradora más icónica de la WNBA, Sabrina Ionescu</p>
-                        <a href="noti1.html">Ver más</a>
-                    </div>
-
-                    <div className="noticia">
-                        <a href="noti2.html">
-                            <img src={noticia2} alt="Noticia 2" />
-                        </a>
-                        <p>LeBron James y Giannis Antetokounmpo serán los capitanes de sus respectivas conferencias</p>
-                        <a href="noti2.html">Ver más</a>
-                    </div>
-
-                    <div className="noticia">
-                        <a href="noti3.html">
-                            <img src={noticia3} alt="Noticia 3" />
-                        </a>
-                        <p>Ahora toca pensar en las tres jornadas de test en Bahréin (del 21 al 23 de febrero) y, poco después, arranca el nuevo curso (el 2 de marzo en el circuito de Sakhir). Dicho sea de paso, a priori es una campaña en la que parte como claro favorito Red Bull. Y más viendo su flamante RB20.</p>
-                        <a href="noti3.html">Ver más</a>
-                    </div>
-
-                    <div className="noticia">
-                        <a href="noti4.html">
-                            <img src={noticia4} alt="Noticia 4" />
-                        </a>
-                        <p>El gran estado de forma de Aston Martin a principios de la temporada 2023 cayó drásticamente a mitad de año, por lo que mucho de si han aprendido de sus errores depende de si han sido capaces de entender, recuperar y construir sobre el rendimiento que se perdió en el transcurso de la pasada campaña.</p>
-                        <a href="noti4.html">Ver más</a>
-                    </div>
-                </div>
-
-                {/* Footer */}
-                <div className="footer">
-                    <div className="Info">
-                        <a href="desarrollo.html">Sobre mí</a>
-                        <a href="desarrollo.html">Cookies</a>
-                    </div>
-
-                    <div className="divredes">
-                        <div className="redes">
-                            <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                            <a href="#"><i className="fa-brands fa-youtube"></i></a>
-                            <a href="#"><i className="fa-brands fa-facebook"></i></a>
-                            <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+  const filtrarNoticias = (terminoBusqueda) => {
+    const resultados = noticias.filter((noticia) =>
+      noticia.titulo.toLowerCase().includes(terminoBusqueda.toLowerCase())
     );
+    setNoticiasFiltradas(resultados);
+  };
+
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filtrarNoticias(e.target.value);
+  };
+
+  useEffect(() => {
+    obtenerNoticias();
+  }, []);
+
+  if (cargando) {
+    return <p>Cargando noticias...</p>;
+  }
+
+  return (
+    <div className="Inicio">
+      <Cabecera activePage="inicio" />
+      <h1>Noticias más relevantes</h1>
+      <MagicMotion>
+      <div className="containerInput">
+        <input
+          className="inputBuscar"
+          value={busqueda}
+          placeholder="Buscar noticia por título"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="noticiasContainer">
+        {noticiasFiltradas.map((noticia, index) => (
+          <div className="noticia" key={index}>
+            <Link to={`/noticias/${noticia.id}`} key={noticia.id}>
+              <img
+                src={`http://127.0.0.1:8000/${noticia.imagen}`}
+                alt={`Noticia ${index + 1}`}
+              />
+            </Link>
+            <p>{noticia.titulo}</p>
+            <Link to={`/noticias/${noticia.id}`} key={noticia.id} className="verMas">
+              Ver más
+            </Link>
+          </div>
+        ))}
+      </div>
+      {noticiasFiltradas.length === 0 && (
+        <p className="no-results">No hay resultados para esa búsqueda.</p>
+      )}
+      </MagicMotion>
+    </div>
+  );
 };
 
 export default Noticias;

@@ -1,56 +1,88 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
+/* Contenedor de los productos */
 .centrar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
- 
-  
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila */
+    gap: 20px; /* Espacio entre las cartas */
+    padding: 20px;
+    justify-items: center; /* Centra los productos dentro de sus columnas */
 }
 
+/* Estilo para cada carta de producto */
 .articulo {
-    background: #f9f9f9;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
-    width: 150px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 250px; /* Ancho fijo para cada carta */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto de hover en las cartas */
 .articulo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px); /* Levanta la carta */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
 }
 
+/* Imagen dentro de la carta */
 .articulo img {
-    max-width: 100%;
+    width: 100%; /* La imagen ocupa todo el ancho de la carta */
     height: auto;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
+/* Estilos del texto dentro de la carta */
 .articulo p {
-    font-size: 1.2rem;
-    color: #333;
-    margin: 10px 0;
+    font-size: 16px;
+    margin: 5px 0;
 }
 
 .articulo button {
-    background: #df1882;
-    color: #fff;
+    background-color: #DF1882;
+    color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 .articulo button:hover {
-    background: #bb156c;
+    background-color: #d52f8c;
+}
+
+
+.mensaje {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #df1882;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

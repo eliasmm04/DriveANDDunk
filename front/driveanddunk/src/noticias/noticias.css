@@ -1,24 +1,99 @@
-.centrar {
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    color: #DF1882; /* Color del texto */
+    text-align: center; /* Centrado */
+    margin-top: 20px; /* Espaciado superior */
+    margin-bottom: 30px; /* Espaciado inferior */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+    padding-bottom: 10px; /* Espaciado interno */
+}
+  /* Barra de búsqueda */
+  .containerInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .inputBuscar {
+    width: 50%;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    transition: border 0.3s ease;
+  }
+  
+  .inputBuscar:focus {
+    border-color: #df1882;
+  }
+  
+  /* Contenedor de noticias */
+  .noticiasContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-.noticia {
-    width: 25%;
-    text-align: center;
     align-items: center;
-}
-
-.noticia button {
-    bottom: 0;
-}
-.noticia img{
-    width: 200px;
-    margin-bottom: 33px;
-}
-.footer{
-    margin-top: 200px;
-}
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Tarjeta de noticia */
+  .noticia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45%; /* Ocupa el 50% del ancho con margen */
+    margin: 10px;
+    background-color: #fff;
+    border: 2px solid #df1882;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  .noticia:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .noticia img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .noticia p {
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  .verMas {
+    color: #df1882;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .verMas:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mensaje de búsqueda sin resultados */
+  .no-results {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  

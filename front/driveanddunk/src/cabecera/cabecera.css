@@ -34,6 +34,7 @@ a .icono {
   text-decoration: none;
   color: white;
   font-size: 30px;
+  margin-left: 20px;
 }
 
 /* Estilos para el menú de navegación */
@@ -43,6 +44,13 @@ a .icono {
   width: 100%;
   border-top: 3px solid #DF1882;
   border-bottom: 3px solid #DF1882;
+}
+
+.ordenarIconosCabecera{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+ 
 }
 
 .menu-item {
