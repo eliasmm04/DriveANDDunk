@@ -13,6 +13,7 @@ import Register from './auth/register.js'; // Página de registro
 import NoticiaEspecifica from './noticias/noticiaEspecifica.js';
 import JugadorEspecifico from './baloncesto/jugadorEspecifico.js';
 import PilotoEspecifico from './f1/pilotoEspecifico.js';
+import Calendario from './calendario/calendario.js';
 
 function App() {
   const [user, setUser] = useState(null); // Estado para el usuario logueado
@@ -29,6 +30,7 @@ function App() {
             <Route path="/noticias" element={< Noticias />} />
             <Route path="/F1" element={< F1 />} />
             <Route path="/carrito" element={< Carrito />} />
+            <Route path="/calendario" element={<Calendario />} />
             <Route path="/*" element={< EnDesarrollo />} />
 
             <Route path="/noticias/:noticiaId" element={<NoticiaEspecifica />} />

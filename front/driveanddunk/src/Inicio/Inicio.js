@@ -9,6 +9,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faShop } from "@fortawesome/free-solid-svg-icons";
 import { faCar } from "@fortawesome/free-solid-svg-icons";
 import { faMedal } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 import Cabecera from "../cabecera/cabecera";
 
@@ -67,10 +68,15 @@ const Inicio = () => {
                     <h2><FontAwesomeIcon icon={faCar} className='iconoInicio' /> Pilotos</h2>
                     <p>Descubre los pilotos más destacados de la Fórmula 1.</p>
                 </Link>
+                <Link to="/calendario" className="section-card">
+                    <h2><FontAwesomeIcon icon={faCalendar} className='iconoInicio' /> Calendario</h2>
+                    <p>Mantente informado con las carreras de la f1 con nuestro calendario de eventos.</p>
+                </Link>
                 <Link to="/noticias" className="section-card">
                     <h2><FontAwesomeIcon icon={faNewspaper} className='iconoInicio' /> Noticias</h2>
                     <p>Mantente informado con las últimas noticias deportivas.</p>
                 </Link>
+                
             </div>
         </div>
     );

@@ -59,8 +59,11 @@ const Cabecera = ({ activePage }) => {
               <div className="submenu-item">
                 <Link to='/f1' className='nav-url'>Info pilotos</Link>
               </div>
+              <div className="submenu-item">
+                <Link to='/calendario' className='nav-url'>Calendario</Link>
+              </div>
             </div>
-          
+            
         </div>
 
         <div className={`menu-item ${activePage === 'distribucionInfo' ? 'bold' : ''}`}>

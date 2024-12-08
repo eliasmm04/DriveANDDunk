@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.contenidoPaginaCalendario {
+    display: flex;
+}
+
+/* Estilos del Sidebar */
+.sidebarCalendario {
+    width: 30%;
+    padding-top: 10px;
+    background: #faeac9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 1%;
+    border-left: 1px solid #d3e2e8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.sidebarCalendario h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #DF1882;
+}
+
+.sidebarCalendario ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #333;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.sidebarCalendario ul li {
+    margin-bottom: 10px;
+}
+
+.sidebarCalendario label {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Estilos de la caja de búsqueda */
+.containerInputCalendario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.inputBuscarCalendario {
+    display: flex;
+    width: 70%;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    text-align: center;
+    padding: 5px;
+}
+
+.inputBuscarCalendario:focus {
+    border-color: #c18d15;
+}
+
+.btn-succes {
+    background-color: #c18d15;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-succes:hover {
+    background-color: #c18d15;
+}
+
+/* Estilos del contenido de los eventos */
+.sidebarCalendario div {
+    background-color: #fff;
+    border: 1px solid #d3e2e8;
+    padding: 15px;
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebarCalendario h2 {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.sidebarCalendario p {
+    font-size: 1em;
+    color: #555;
+}
+
+.no-results {
+    margin-top: 20px;
+    color: #ff0000;
+    font-size: 1.2em;
+}
+
+/* Estilos del calendario */
+.calendario {
+    width: 75%;
+    padding: 20px;
+    z-index: 0;
+    position: relative;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para el checkbox */
+  label input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid #c18d15;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+  
+  /* Estilo cuando el checkbox está marcado */
+  label input[type="checkbox"]:checked {
+    background-color: #c18d15;
+    border-color:#c18d15;
+  }
+  
+  /* Efecto hover */
+  label input[type="checkbox"]:hover {
+    border-color: #c18d15;
+  }
+
+  /* Contenedor principal */
+/* Estilos para el contenedor principal */
+.restoDeEventos {
+    display: flex;
+    flex-wrap: wrap; /* Permite envolver las columnas en nuevas filas */
+    gap: 20px; /* Espaciado entre columnas */
+    justify-content: center; /* Centrar las columnas dentro del contenedor */
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #faeac9; /* Fondo similar al sidebar */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Título del contenedor */
+.restoDeEventos h2 {
+    flex-basis: 100%; /* Ocupar toda la fila */
+    text-align: center;
+    font-size: 1.8em;
+    color: #DF1882; /* Color principal */
+    margin-bottom: 20px;
+}
+
+/* Estilos de cada columna (evento) */
+.restoDeEventos > div {
+    background-color: #fff; /* Fondo blanco para cada evento */
+    border: 1px solid #d3e2e8;
+    border-radius: 8px;
+    padding: 15px;
+    flex: 1 1 calc(25% - 20px); /* Ocupa el 25% del ancho, menos el gap */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hover para cada evento */
+.restoDeEventos > div:hover {
+    transform: scale(1.02); /* Ampliar ligeramente al pasar el ratón */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para el contenido de cada evento */
+.restoDeEventos > div h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.restoDeEventos > div p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 5px;
+}
